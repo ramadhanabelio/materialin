@@ -1,4 +1,4 @@
-# materialin
+# Materialin, Sistem Informasi Penjualan Material Bangunan
 
 A new Flutter project.
 
