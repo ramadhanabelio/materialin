@@ -86,7 +86,7 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text("Harga: Rp ${p.price.toStringAsFixed(0)}"),
+                Text("Harga: Rp. ${p.price.toStringAsFixed(0)}"),
                 Text("Stok: ${p.stock}"),
                 const SizedBox(height: 10),
                 Text(p.description ?? '-'),

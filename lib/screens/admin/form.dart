@@ -205,7 +205,7 @@ class _FormProductPageState extends State<FormProductPage> {
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
                 child: Text(
-                  isSaving ? 'Menyimpan...' : 'Simpan',
+                  isSaving ? 'Menyimpan...' : 'SIMPAN',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),

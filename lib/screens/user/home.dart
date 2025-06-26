@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../api/user.dart';
-import '../../models/product.dart';
 import '../../utils/session_manager.dart';
+import '../../models/product.dart';
 import '../../utils/theme.dart';
+import '../../api/user.dart';
 import 'detail.dart';
 import 'login.dart';
 
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.logout, color: Colors.white),
-                tooltip: "Logout",
+                tooltip: "Keluar",
                 onPressed: () => _confirmLogout(context),
               ),
             ],

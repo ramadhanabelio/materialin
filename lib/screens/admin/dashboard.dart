@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:materialin/screens/admin/list.dart';
-import '../../api/admin.dart';
-import 'login.dart';
 import '../../utils/theme.dart';
+import '../../api/admin.dart';
+import 'list.dart';
+import 'login.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -75,7 +75,7 @@ class DashboardPage extends StatelessWidget {
               IconButton(
                 onPressed: () => _confirmLogout(context),
                 icon: const Icon(Icons.logout, color: Colors.white),
-                tooltip: 'Logout',
+                tooltip: 'Keluar',
               ),
             ],
           ),

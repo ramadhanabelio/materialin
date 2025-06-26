@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../api/admin.dart';
 import '../../utils/theme.dart';
+import '../../api/admin.dart';
+import '../user/login.dart';
 import 'dashboard.dart';
 
 class LoginAdminPage extends StatefulWidget {
@@ -48,6 +49,16 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginPage()),
+          );
+        },
+        child: const Icon(Icons.account_circle, color: AppColors.background),
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -55,7 +66,7 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Admin Materialin",
+                "Admin Panel Materialin",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -64,7 +75,7 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
               ),
               const SizedBox(height: 4),
               const Text(
-                "Admin Panel Materialin",
+                "Sistem Informasi Penjualan Material Bangunan",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w300,

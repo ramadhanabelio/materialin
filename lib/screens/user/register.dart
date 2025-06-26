@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../api/user.dart';
-import 'login.dart';
 import '../../utils/theme.dart';
+import '../../api/user.dart';
+import '../admin/login.dart';
+import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -71,6 +72,19 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginAdminPage()),
+          );
+        },
+        child: const Icon(
+          Icons.admin_panel_settings,
+          color: AppColors.background,
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
