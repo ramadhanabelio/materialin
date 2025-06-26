@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../api/admin.dart';
 import '../../models/product.dart';
+import '../../utils/theme.dart';
 import 'form.dart';
 
 class ListProductPage extends StatefulWidget {
@@ -43,12 +44,21 @@ class _ListProductPageState extends State<ListProductPage> {
             content: Text('Yakin ingin menghapus "${product.name}"?'),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: Text('Batal'),
+                child: const Text(
+                  "Batal",
+                  style: TextStyle(color: AppColors.primary),
+                ),
+                onPressed: () => Navigator.pop(context),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                ),
                 onPressed: () => Navigator.pop(context, true),
-                child: Text('Hapus'),
+                child: const Text(
+                  "Hapus",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
