@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
       context: context,
       builder:
           (_) => AlertDialog(
+            backgroundColor: Colors.white,
             title: const Text("Konfirmasi"),
             content: const Text("Yakin ingin keluar?"),
             actions: [
@@ -47,6 +48,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: Container(
@@ -60,6 +62,7 @@ class HomePage extends StatelessWidget {
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
+            automaticallyImplyLeading: false,
             centerTitle: true,
             title: const Text(
               "Daftar Produk",
@@ -108,6 +111,7 @@ class HomePage extends StatelessWidget {
                   );
                 },
                 child: Card(
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

@@ -40,6 +40,7 @@ class _ListProductPageState extends State<ListProductPage> {
       context: context,
       builder:
           (_) => AlertDialog(
+            backgroundColor: Colors.white,
             title: Text('Hapus Produk'),
             content: Text('Yakin ingin menghapus "${product.name}"?'),
             actions: [
@@ -82,6 +83,7 @@ class _ListProductPageState extends State<ListProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(

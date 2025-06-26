@@ -111,6 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 32),
               Card(
                 elevation: 8,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),

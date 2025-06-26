@@ -12,6 +12,7 @@ class DashboardPage extends StatelessWidget {
       context: context,
       builder:
           (_) => AlertDialog(
+            backgroundColor: Colors.white,
             title: const Text("Konfirmasi"),
             content: const Text("Yakin ingin keluar?"),
             actions: [
@@ -48,6 +49,7 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBodyBehindAppBar: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),

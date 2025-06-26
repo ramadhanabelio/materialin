@@ -74,6 +74,7 @@ class _FormProductPageState extends State<FormProductPage> {
     final isEdit = widget.product != null;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(

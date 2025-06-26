@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 32),
               Card(
                 elevation: 8,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
