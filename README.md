@@ -1,16 +1,38 @@
-# Materialin, Sistem Informasi Penjualan Material Bangunan
+<div id="start-of-content" align="center">
 
-A new Flutter project.
+##
 
-## Getting Started
+### Materialin, Sistem Informasi Penjualan Material Bangunan
 
-This project is a starting point for a Flutter application.
+</div>
 
-A few resources to get you started if this is your first Flutter project:
+## 📙 Description
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Materialin is a mobile-based application designed to manage the sales of construction materials effectively. This system provides essential features for both sellers (admin) and buyers (customers) in one integrated platform, supporting product management and shopping convenience anytime, anywhere.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Materialin Thumbnail](images/Thumbnail.png)
+
+## 📖 Features
+
+Main features in the **Materilin** application:
+
+### 🔐 Authentication
+
+- Admin and customers can log in with registered accounts.
+- Customers can **register directly** via the mobile application.
+
+### 🛠️ Product Management (Admin)
+
+- Admin can perform **CRUD (Create, Read, Update, Delete)** on product data, including:
+- Product name
+- Product description
+- Price
+- Stock
+- Product image
+- This feature makes it easier for admins to manage product information in real-time.
+
+### 🛒 Product Catalog (Customers)
+
+- Customers can see the **list of building material products** available.
+- Product details are displayed in full, including name, description, price, and stock availability.
+- The interface is designed to be easy for customers to search for and view products.
