@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
                           child:
                               p.image != null
                                   ? Image.network(
-                                    'http://materialin.polbeng.my.id/storage/${p.image}',
+                                    'http://192.168.25.157:8000/storage/${p.image}',
                                     height: 160,
                                     width: double.infinity,
                                     fit: BoxFit.cover,

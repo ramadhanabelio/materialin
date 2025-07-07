@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import '../utils/constants.dart';
 import '../utils/session_manager.dart';
@@ -54,26 +56,38 @@ class AdminApi {
     }
   }
 
-  static Future<bool> saveProduct(Product product, {int? id}) async {
+  static Future<bool> saveProduct(
+    Product product, {
+    int? id,
+    Uint8List? webImageBytes,
+  }) async {
     final token = await SessionManager.getToken();
     final uri = Uri.parse(
       id == null ? '$baseUrl/admin/products' : '$baseUrl/admin/products/$id',
     );
 
     final request =
-        http.MultipartRequest(id == null ? 'POST' : 'POST', uri)
+        http.MultipartRequest('POST', uri)
           ..headers['Authorization'] = 'Bearer $token'
           ..headers['Accept'] = 'application/json'
           ..fields.addAll(product.toMap());
 
-    if (product.imageFile != null) {
+    if (id != null) {
+      request.fields['_method'] = 'PUT';
+    }
+
+    if (kIsWeb && webImageBytes != null) {
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'image',
+          webImageBytes,
+          filename: 'upload.png',
+        ),
+      );
+    } else if (product.imageFile != null) {
       request.files.add(
         await http.MultipartFile.fromPath('image', product.imageFile!.path),
       );
-    }
-
-    if (id != null) {
-      request.fields['_method'] = 'PUT';
     }
 
     final streamedResponse = await request.send();

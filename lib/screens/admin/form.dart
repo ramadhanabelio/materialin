@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../../models/product.dart';
 import '../../api/admin.dart';
 
@@ -20,6 +23,7 @@ class _FormProductPageState extends State<FormProductPage> {
   late TextEditingController _stock;
 
   File? _imageFile;
+  Uint8List? _webImageBytes;
   bool isSaving = false;
 
   @override
@@ -35,12 +39,30 @@ class _FormProductPageState extends State<FormProductPage> {
     );
   }
 
+  @override
+  void dispose() {
+    _name.dispose();
+    _desc.dispose();
+    _price.dispose();
+    _stock.dispose();
+    super.dispose();
+  }
+
   Future<void> _pickImage() async {
-    final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (picked != null) {
-      setState(() {
-        _imageFile = File(picked.path);
-      });
+    if (kIsWeb) {
+      final result = await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null && result.files.single.bytes != null) {
+        setState(() {
+          _webImageBytes = result.files.single.bytes;
+        });
+      }
+    } else {
+      final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (picked != null) {
+        setState(() {
+          _imageFile = File(picked.path);
+        });
+      }
     }
   }
 
@@ -51,21 +73,25 @@ class _FormProductPageState extends State<FormProductPage> {
       id: widget.product?.id ?? 0,
       name: _name.text,
       description: _desc.text,
-      price: double.parse(_price.text),
-      stock: int.parse(_stock.text),
-      imageFile: _imageFile,
+      price: double.tryParse(_price.text) ?? 0.0,
+      stock: int.tryParse(_stock.text) ?? 0,
+      imageFile: kIsWeb ? null : _imageFile,
     );
 
     setState(() => isSaving = true);
-    final success = await AdminApi.saveProduct(product, id: widget.product?.id);
+    final success = await AdminApi.saveProduct(
+      product,
+      id: widget.product?.id,
+      webImageBytes: _webImageBytes,
+    );
     setState(() => isSaving = false);
 
-    if (success) {
+    if (success && mounted)
       Navigator.pop(context, true);
-    } else {
+    else if (mounted) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Gagal menyimpan produk")));
+      ).showSnackBar(const SnackBar(content: Text("Gagal menyimpan produk")));
     }
   }
 
@@ -182,7 +208,12 @@ class _FormProductPageState extends State<FormProductPage> {
                   style: TextStyle(color: Color(0xFF8D6E63)),
                 ),
               ),
-              if (_imageFile != null)
+              if (kIsWeb && _webImageBytes != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Image.memory(_webImageBytes!, height: 120),
+                )
+              else if (!kIsWeb && _imageFile != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Image.file(_imageFile!, height: 120),
@@ -191,8 +222,11 @@ class _FormProductPageState extends State<FormProductPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Image.network(
-                    'http://materialin.polbeng.my.id/storage/${widget.product!.image}',
+                    'http://192.168.25.157:8000/storage/${widget.product!.image}',
                     height: 120,
+                    errorBuilder:
+                        (context, error, stackTrace) =>
+                            const Text('Gagal memuat gambar'),
                   ),
                 ),
               const SizedBox(height: 20),

@@ -140,7 +140,7 @@ class _ListProductPageState extends State<ListProductPage> {
               final p = products[index];
               final imageUrl =
                   p.image != null
-                      ? 'http://materialin.polbeng.my.id/storage/${p.image}'
+                      ? 'http://192.168.25.157:8000/storage/${p.image}'
                       : null;
 
               return ListTile(
